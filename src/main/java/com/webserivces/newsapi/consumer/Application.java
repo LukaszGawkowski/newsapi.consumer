@@ -1,13 +1,15 @@
 package com.webserivces.newsapi.consumer;
 
-import com.webserivces.newsapi.consumer.dto.NewsApiResponseDTO;
+import com.webserivces.newsapi.consumer.configuration.NewsAPIconfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
@@ -24,15 +26,23 @@ public class Application {
 		return builder.build();
 	}
 
+
+	@Autowired
+	NewsAPIconfig config;
+
+
 	@Bean
-	public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
+	ApplicationRunner applicationRunner(RestTemplate restTemplate){
 		return args -> {
-			String response = restTemplate.getForObject("https://newsapi.org/v2/everything?q=Apple&from=2021-05-21&sortBy=popularity&apiKey=7daf714e1e234518a60167fe11956364", String.class);
+			ResponseEntity<String> response = restTemplate.getForEntity(
+					"https://newsapi.org/v2/everything?q=Apple&from=2021-05-21&sortBy=popularity&apiKey=7daf714e1e234518a60167fe11956364",
+					String.class);
 
-			System.out.println(response);
 
-			log.info(response);
+			System.out.println(config);
+
+			log.info(response.toString());
+
 		};
-
 	}
 }
