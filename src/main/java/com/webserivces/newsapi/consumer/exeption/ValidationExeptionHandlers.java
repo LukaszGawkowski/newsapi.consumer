@@ -13,17 +13,17 @@ public class ValidationExeptionHandlers {
 
     //TODO check how to handle validation exeptions. They appear to not work correctly
 
-    @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity handle(ConstraintViolationException constraintViolationException) {
-        Set<ConstraintViolation<?>> violations = constraintViolationException.getConstraintViolations();
-        String errorMessage = "";
-        if (!violations.isEmpty()) {
-            StringBuilder builder = new StringBuilder();
-            violations.forEach(violation -> builder.append(" " + violation.getMessage()));
-            errorMessage = builder.toString();
-        } else {
-            errorMessage = "ConstraintViolationException occured.";
-        }
-        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
-    }
+//    @ExceptionHandler(ConstraintViolationException.class)
+//    public ResponseEntity handle(ConstraintViolationException constraintViolationException) {
+//        Set<ConstraintViolation<?>> violations = constraintViolationException.getConstraintViolations();
+//        String errorMessage = "";
+//        if (!violations.isEmpty()) {
+//            StringBuilder builder = new StringBuilder();
+//            violations.forEach(violation -> builder.append(" " + violation.getMessage()));
+//            errorMessage = builder.toString();
+//        } else {
+//            errorMessage = "ConstraintViolationException occured.";
+//        }
+//        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+//    }
 }
