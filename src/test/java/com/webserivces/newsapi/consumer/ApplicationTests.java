@@ -8,10 +8,14 @@ class ApplicationTests {
 
 	//TODO REMEMBER ABOUT TESTS!
 
+	// IDEAS FOR UNIT TESTING
+	//Mock RestTemplate and check if it returns what it is needed
+	//Mock URL Builder
+	//Try to test Pagination Handler somehow
 
-	//mock RestTemplate -> czy zwracaa to co trzeba
 
-	//dodac IT integration test -> czy client faktycznie zwraca to co trzeba
+	//IDEAS FOR INTEGRATION TESTING
+	//Check if the API client returns what is expected
 
 
 	@Test

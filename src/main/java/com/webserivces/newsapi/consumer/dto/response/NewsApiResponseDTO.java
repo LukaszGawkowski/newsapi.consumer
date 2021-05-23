@@ -1,4 +1,4 @@
-package com.webserivces.newsapi.consumer.dto;
+package com.webserivces.newsapi.consumer.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
@@ -11,7 +11,6 @@ public class NewsApiResponseDTO {
     private long totalResults;
     private String code;
     private String message;
-
     private ArticlesDTO[] articles;
 
 }

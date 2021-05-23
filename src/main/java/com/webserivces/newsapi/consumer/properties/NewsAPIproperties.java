@@ -1,4 +1,4 @@
-package com.webserivces.newsapi.consumer.configuration;
+package com.webserivces.newsapi.consumer.properties;
 
 
 import lombok.Data;
@@ -7,13 +7,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotEmpty;
-import java.util.Map;
 
 @Configuration
 @ConfigurationProperties(prefix = "api.url")
 @Data
 @Validated
-public class NewsAPIconfig {
+public class NewsAPIproperties {
 
     //TODO check how to handle validation exeptions. They appear to not work correctly
 
@@ -28,9 +27,6 @@ public class NewsAPIconfig {
 
     @NotEmpty(message = "Endpoint of NewsAPI not specified. Check application.properties file and fill it up!")
     private String endpoint;
-
-//    @NotEmpty(message = "No request parameters provided. Check application.properties file and fill it up!")
-    private Map<String,String> parameters;
 
 }
 
