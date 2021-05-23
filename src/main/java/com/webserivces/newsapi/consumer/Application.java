@@ -1,6 +1,7 @@
 package com.webserivces.newsapi.consumer;
 
 import com.webserivces.newsapi.consumer.client.NewsAPIClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,14 +15,14 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	NewsAPIClient newsAPIClient = new NewsAPIClient();
-
 	@Bean
-	ApplicationRunner applicationRunner(NewsAPIClient newsAPIClient){
+	ApplicationRunner applicationRunner(){
 		return args -> {
 
-		newsAPIClient.getEverythingOnePage("business", "pl", 1, 100);
+			NewsAPIClient newsAPIClient = new NewsAPIClient();
 
+		newsAPIClient.getEverythingArticlesOnePage("business", "pl",1,100);
+//		newsAPIClient.getEverythingAllArticles("business","pl");
 		};
 	}
 

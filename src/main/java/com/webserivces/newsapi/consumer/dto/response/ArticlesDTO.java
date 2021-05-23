@@ -20,4 +20,12 @@ public class ArticlesDTO {
 //    private Map<String, String> source;
 //    private String publishedAt;
 //    private String content;
+
+
+    //TODO -> Remove this when CSV writing will be complete
+
+    @Override
+    public String toString() {
+        return author + ":" + description + ":" + title;
+    }
 }
