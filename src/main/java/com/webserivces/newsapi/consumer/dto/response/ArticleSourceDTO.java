@@ -7,6 +7,8 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ArticleSourceDTO {
 
-    private String id;
-    private String name;
+    //    These are not neccesery right now -> may find use for them later
+
+//    private String id;
+//    private String name;
 }

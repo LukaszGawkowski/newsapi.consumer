@@ -9,12 +9,15 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ArticlesDTO {
 
-    private Map<String, String> source;
-    private String author;
     private String title;
     private String description;
-    private String url;
-    private String urlToImage;
-    private String publishedAt;
-    private String content;
+    private String author;
+
+//    These are not neccesery right now -> may find use for them later
+
+//    private String urlToImage;
+//    private String url;
+//    private Map<String, String> source;
+//    private String publishedAt;
+//    private String content;
 }

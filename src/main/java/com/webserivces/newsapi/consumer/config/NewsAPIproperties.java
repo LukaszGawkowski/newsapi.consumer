@@ -1,4 +1,4 @@
-package com.webserivces.newsapi.consumer.properties;
+package com.webserivces.newsapi.consumer.config;
 
 
 import lombok.Data;
