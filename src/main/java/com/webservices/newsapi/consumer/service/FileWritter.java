@@ -2,6 +2,7 @@ package com.webservices.newsapi.consumer.service;
 
 import com.webservices.newsapi.consumer.Application;
 import com.webservices.newsapi.consumer.dto.response.ArticlesDTO;
+import com.webservices.newsapi.consumer.properties.FileWritterProperties;
 import com.webservices.newsapi.consumer.properties.NewsAPIproperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,16 +20,18 @@ public class FileWritter {
 
     private static final Logger log = LoggerFactory.getLogger(Application.class);
 
-    public void writeFile(ArticlesDTO[] array) throws IOException {
+    @Autowired
+    FileWritterProperties fileWritterProperties;
 
-        final String DESTINATION = "src/main/java/com/webservices/newsapi/consumer/output/";
+    public void writeFile(ArticlesDTO[] array) throws IOException {
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy_MM_dd_HH:mm:ss_");
         LocalDateTime todaysDate = LocalDateTime.now();
         dateTimeFormatter.format(todaysDate);
 
-        final String FILE_NAME = dateTimeFormatter.format(todaysDate) +"apinews_everything_result.txt";
-        final String HEADER = "AUTHOR:DESCRIPTION:TITLE";
+        final String DESTINATION = fileWritterProperties.getFileSavePath();
+        final String FILE_NAME = dateTimeFormatter.format(todaysDate) + fileWritterProperties.getFileBaseName();
+        final String HEADER = fileWritterProperties.getHeader();
 
         BufferedWriter writer = new BufferedWriter(new FileWriter(DESTINATION +FILE_NAME));
         writer.write(HEADER);
