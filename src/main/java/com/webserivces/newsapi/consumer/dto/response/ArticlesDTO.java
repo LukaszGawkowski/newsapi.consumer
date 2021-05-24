@@ -12,9 +12,6 @@ public class ArticlesDTO {
     private String description;
     private String author;
 
-
-    //TODO -> Remove this when CSV writing will be complete
-
     @Override
     public String toString() {
         return author + ":" + description + ":" + title;

@@ -45,13 +45,12 @@ public class HTTPConnectionHandler {
 
         ResponseEntity<NewsApiResponseDTO> response = restTemplate.exchange(url, HttpMethod.GET, httpEntity, NewsApiResponseDTO.class);
 
-        ArticlesDTO[] result = response.getBody().getArticles();
-
-        for (ArticlesDTO article : result) {
-           log.info(article.toString());
+        if (response.getStatusCode().equals(HttpStatus.OK)){
+            log.info("Retrived one page article array from newsapi.org");
+            log.info("URL = " + url);
         }
 
-        return result;
+        return response.getBody().getArticles();
 
     }
 }
