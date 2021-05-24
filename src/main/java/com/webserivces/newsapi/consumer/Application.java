@@ -15,14 +15,15 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
+	@Autowired
+	NewsAPIClient newsAPIClient;
+
 	@Bean
-	ApplicationRunner applicationRunner(){
+	ApplicationRunner applicationRunner(NewsAPIClient newsAPIClient){
 		return args -> {
 
-			NewsAPIClient newsAPIClient = new NewsAPIClient();
+		newsAPIClient.getArticles("business", "pl");
 
-		newsAPIClient.getEverythingArticlesOnePage("business", "pl",1,100);
-//		newsAPIClient.getEverythingAllArticles("business","pl");
 		};
 	}
 

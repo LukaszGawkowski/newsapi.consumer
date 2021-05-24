@@ -28,6 +28,12 @@ public class NewsAPIproperties {
     @NotEmpty(message = "Endpoint of NewsAPI not specified. Check application.properties file and fill it up!")
     private String endpoint;
 
+    @NotEmpty(message = "Page parameter of NewsAPI not specified. Check application.properties file and fill it up!")
+    private String page;
+
+    @NotEmpty(message = "PageSize parameter of NewsAPI not specified. Check application.properties file and fill it up!")
+    private String pageSize;
+
 }
 
 
