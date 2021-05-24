@@ -1,6 +1,7 @@
-package com.webserivces.newsapi.consumer;
+package com.webservices.newsapi.consumer;
 
-import com.webserivces.newsapi.consumer.client.NewsAPIClient;
+import com.webservices.newsapi.consumer.client.NewsAPIClient;
+import com.webservices.newsapi.consumer.dto.response.ArticlesDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,9 +23,8 @@ public class Application {
 	ApplicationRunner applicationRunner(NewsAPIClient newsAPIClient){
 		return args -> {
 
-		newsAPIClient.getArticles("business", "pl");
-
-		newsAPIClient.createFile(newsAPIClient.getArticles("business", "pl"), "path");
+		 ArticlesDTO[] result = newsAPIClient.getArticles("business", "pl");
+		newsAPIClient.createFile(result);
 
 		};
 	}

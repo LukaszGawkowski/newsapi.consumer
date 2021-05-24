@@ -1,9 +1,9 @@
-package com.webserivces.newsapi.consumer.service;
+package com.webservices.newsapi.consumer.service;
 
-import com.webserivces.newsapi.consumer.Application;
-import com.webserivces.newsapi.consumer.dto.response.ArticlesDTO;
-import com.webserivces.newsapi.consumer.dto.response.NewsApiResponseDTO;
-import com.webserivces.newsapi.consumer.properties.NewsAPIproperties;
+import com.webservices.newsapi.consumer.Application;
+import com.webservices.newsapi.consumer.dto.response.ArticlesDTO;
+import com.webservices.newsapi.consumer.dto.response.NewsApiResponseDTO;
+import com.webservices.newsapi.consumer.properties.NewsAPIproperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

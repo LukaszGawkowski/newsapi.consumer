@@ -1,9 +1,11 @@
-package com.webserivces.newsapi.consumer.client;
+package com.webservices.newsapi.consumer.client;
 
-import com.webserivces.newsapi.consumer.dto.response.ArticlesDTO;
-import com.webserivces.newsapi.consumer.service.FileWritter;
-import com.webserivces.newsapi.consumer.service.HTTPConnectionHandler;
+import com.webservices.newsapi.consumer.dto.response.ArticlesDTO;
+import com.webservices.newsapi.consumer.service.FileWritter;
+import com.webservices.newsapi.consumer.service.HTTPConnectionHandler;
 import org.springframework.stereotype.Controller;
+
+import java.io.IOException;
 
 
 @Controller
@@ -21,8 +23,8 @@ public class NewsAPIClient {
        return connectionHandler.getEverythingArticlesOnePage(q,lang);
     }
 
-    public void createFile(ArticlesDTO[] array, String destination){
-       fileWritter.writeFile(array, destination);
+    public void createFile(ArticlesDTO[] array) throws IOException {
+       fileWritter.writeFile(array);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.webserivces.newsapi.consumer.properties;
+package com.webservices.newsapi.consumer.properties;
 
 
 import lombok.Data;
@@ -33,6 +33,9 @@ public class NewsAPIproperties {
 
     @NotEmpty(message = "PageSize parameter of NewsAPI not specified. Check application.properties file and fill it up!")
     private String pageSize;
+
+
+
 
 }
 

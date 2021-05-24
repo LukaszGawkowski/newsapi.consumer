@@ -1,4 +1,4 @@
-package com.webserivces.newsapi.consumer;
+package com.webservices.newsapi.consumer;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
