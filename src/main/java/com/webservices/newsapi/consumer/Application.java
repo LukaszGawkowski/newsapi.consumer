@@ -1,7 +1,8 @@
 package com.webservices.newsapi.consumer;
 
-import com.webservices.newsapi.consumer.service.NewsAPIClient;
-import com.webservices.newsapi.consumer.dto.response.ArticlesDTO;
+import com.webservices.newsapi.consumer.model.Article;
+import com.webservices.newsapi.consumer.service.ClientServiceImpl;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,14 +18,20 @@ public class Application {
 	}
 
 	@Autowired
-	NewsAPIClient newsAPIClient;
+	ClientServiceImpl clientServiceImpl;
 
 	@Bean
-	ApplicationRunner applicationRunner(NewsAPIClient newsAPIClient){
+	public ModelMapper modelMapper(){
+		return new ModelMapper();
+	}
+
+
+	@Bean
+	ApplicationRunner applicationRunner(ClientServiceImpl clientServiceImpl){
 		return args -> {
 
-		 ArticlesDTO[] result = newsAPIClient.getArticles("business", "pl");
-		newsAPIClient.createFile(result);
+			Article[] result = clientServiceImpl.getArticles("business", "pl");
+		clientServiceImpl.createFile(result);
 
 		};
 	}

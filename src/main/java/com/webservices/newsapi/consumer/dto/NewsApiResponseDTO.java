@@ -1,4 +1,4 @@
-package com.webservices.newsapi.consumer.dto.response;
+package com.webservices.newsapi.consumer.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;

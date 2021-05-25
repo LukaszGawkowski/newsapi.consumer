@@ -1,13 +1,11 @@
 package com.webservices.newsapi.consumer.io;
 
-import com.webservices.newsapi.consumer.Application;
-import com.webservices.newsapi.consumer.dto.response.ArticlesDTO;
+import com.webservices.newsapi.consumer.model.Article;
 import com.webservices.newsapi.consumer.properties.FileWritterProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -23,7 +21,7 @@ public class FileWritter {
     @Autowired
     FileWritterProperties fileWritterProperties;
 
-    public void writeFile(ArticlesDTO[] array) throws IOException {
+    public void writeFile(Article[] array) throws IOException {
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy_MM_dd_HH:mm:ss_");
         LocalDateTime todaysDate = LocalDateTime.now();
@@ -36,7 +34,7 @@ public class FileWritter {
         BufferedWriter writer = new BufferedWriter(new FileWriter(DESTINATION +FILE_NAME));
         writer.write(HEADER);
 
-        for (ArticlesDTO element : array) {
+        for (Article element : array) {
             writer.newLine();
             writer.append(element.toString());
         }

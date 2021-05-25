@@ -1,15 +1,14 @@
 package com.webservices.newsapi.consumer.io;
 
-import com.webservices.newsapi.consumer.Application;
-import com.webservices.newsapi.consumer.dto.response.ArticlesDTO;
-import com.webservices.newsapi.consumer.dto.response.NewsApiResponseDTO;
+import com.webservices.newsapi.consumer.dto.NewsApiResponseDTO;
+import com.webservices.newsapi.consumer.model.Article;
 import com.webservices.newsapi.consumer.properties.NewsAPIproperties;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -23,9 +22,12 @@ public class HTTPConnectionHandler {
     static RestTemplate restTemplate = new RestTemplate();
 
     @Autowired
+    private ModelMapper modelMapper;
+
+    @Autowired
     NewsAPIproperties newsAPIproperties;
 
-    public ArticlesDTO[] getArticlesPage(String queriedPhrase, String language) {
+    public Article[] getArticlesPage(String queriedPhrase, String language) {
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set("x-api-key", newsAPIproperties.getApiKey());
@@ -46,12 +48,14 @@ public class HTTPConnectionHandler {
 
         ResponseEntity<NewsApiResponseDTO> response = restTemplate.exchange(url, HttpMethod.GET, httpEntity, NewsApiResponseDTO.class);
 
+        Article[] articles = modelMapper.map(response.getBody().getArticles(), Article[].class);
+
         if (response.getStatusCode().equals(HttpStatus.OK)){
             log.info("Retrived one page article array from newsapi.org");
             log.info("URL = " + url);
         }
 
-        return response.getBody().getArticles();
+        return articles;
 
     }
 }

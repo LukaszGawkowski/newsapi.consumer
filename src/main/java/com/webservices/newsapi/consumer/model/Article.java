@@ -1,13 +1,14 @@
-package com.webservices.newsapi.consumer.dto.response;
+package com.webservices.newsapi.consumer.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
+import lombok.NoArgsConstructor;
 
 @Data
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class ArticlesDTO {
+@NoArgsConstructor
+@AllArgsConstructor
+public class Article {
 
     private String title;
     private String description;
@@ -17,4 +18,5 @@ public class ArticlesDTO {
     public String toString() {
         return author + ":" + description + ":"  + title;
     }
+
 }

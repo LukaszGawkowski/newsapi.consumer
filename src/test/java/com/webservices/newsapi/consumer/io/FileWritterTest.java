@@ -1,5 +1,6 @@
 package com.webservices.newsapi.consumer.io;
 
+import com.webservices.newsapi.consumer.dto.ArticlesDTO;
 import com.webservices.newsapi.consumer.properties.TestSpecificProperties;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -18,8 +19,6 @@ public class FileWritterTest {
 
     @Test
     public void testProvideArticlesDTOArray_returnsNewFile() throws IOException {
-
-        //TODO -> using @Data annotation on ArticlesDTO may be not good idea since it provides no allargsconstructor neccesery for the test
 
 //        ArticlesDTO[] array = new ArticlesDTO[3];
 //        array[0] = new ArticlesDTO("author0", "description0", "title0");
