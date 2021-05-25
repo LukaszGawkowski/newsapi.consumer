@@ -25,7 +25,6 @@ public class Application {
 		return new ModelMapper();
 	}
 
-
 	@Bean
 	ApplicationRunner applicationRunner(ClientServiceImpl clientServiceImpl){
 		return args -> {
