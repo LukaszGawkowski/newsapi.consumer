@@ -1,12 +1,12 @@
-package com.webservices.newsapi.consumer.service;
+package com.webservices.newsapi.consumer.io;
 
 import com.webservices.newsapi.consumer.Application;
 import com.webservices.newsapi.consumer.dto.response.ArticlesDTO;
 import com.webservices.newsapi.consumer.properties.FileWritterProperties;
-import com.webservices.newsapi.consumer.properties.NewsAPIproperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedWriter;
@@ -15,10 +15,10 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-@Service
+@Component
 public class FileWritter {
 
-    private static final Logger log = LoggerFactory.getLogger(Application.class);
+    private static final Logger log = LoggerFactory.getLogger(FileWritter.class);
 
     @Autowired
     FileWritterProperties fileWritterProperties;

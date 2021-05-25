@@ -1,14 +1,11 @@
-package com.webservices.newsapi.consumer.service;
+package com.webservices.newsapi.consumer.io;
 
-import com.webservices.newsapi.consumer.dto.response.ArticlesDTO;
 import com.webservices.newsapi.consumer.properties.TestSpecificProperties;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
-
-import static org.mockito.Mockito.*;
 
 
 public class FileWritterTest {

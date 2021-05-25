@@ -1,6 +1,6 @@
 package com.webservices.newsapi.consumer;
 
-import com.webservices.newsapi.consumer.client.NewsAPIClient;
+import com.webservices.newsapi.consumer.service.NewsAPIClient;
 import com.webservices.newsapi.consumer.dto.response.ArticlesDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
