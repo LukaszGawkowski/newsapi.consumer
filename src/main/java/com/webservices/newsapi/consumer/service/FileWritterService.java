@@ -5,10 +5,8 @@ import com.webservices.newsapi.consumer.model.Article;
 
 import java.io.IOException;
 
-public interface ClientService {
+public interface FileWritterService {
 
-    Article[] getArticles(String queriedPhrase, String lang);
-
-    void createFile(Article[] articles, FileType fileType) throws IOException;
+   void writeFile(Article[] articles, FileType fileType) throws IOException;
 
 }

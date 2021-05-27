@@ -1,5 +1,6 @@
 package com.webservices.newsapi.consumer.io;
 
+import com.opencsv.CSVWriter;
 import com.webservices.newsapi.consumer.model.Article;
 import com.webservices.newsapi.consumer.properties.FileWritterProperties;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -21,27 +23,68 @@ public class FileWritter {
     @Autowired
     FileWritterProperties fileWritterProperties;
 
-    public void writeFile(Article[] array) throws IOException {
+    private final String DESTINATION;
+    private final String BASE_NAME;
+    private final String HEADER;
+
+
+    public FileWritter(FileWritterProperties fileWritterProperties){
+        this.DESTINATION = fileWritterProperties.getFileSavePath();
+        this.BASE_NAME = fileWritterProperties.getFileBaseName();
+        this.HEADER = fileWritterProperties.getHeader();
+    }
+
+    public void writeFileAsText(Article[] array) throws IOException {
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy_MM_dd_HH:mm:ss_");
         LocalDateTime todaysDate = LocalDateTime.now();
-        dateTimeFormatter.format(todaysDate);
 
-        final String DESTINATION = fileWritterProperties.getFileSavePath();
         final String FILE_NAME = dateTimeFormatter.format(todaysDate) + fileWritterProperties.getFileBaseName();
-        final String HEADER = fileWritterProperties.getHeader();
 
-        BufferedWriter writer = new BufferedWriter(new FileWriter(DESTINATION +FILE_NAME));
-        writer.write(HEADER);
+        BufferedWriter txtWriter = new BufferedWriter(new FileWriter(DESTINATION + FILE_NAME + ".txt"));
+        txtWriter.write(HEADER);
 
         for (Article element : array) {
-            writer.newLine();
-            writer.append(element.toString());
+            txtWriter.newLine();
+            txtWriter.append(element.toString());
         }
-        writer.close();
+        txtWriter.close();
 
         log.info("Text file created successfully. Number of uploaded articles = " + array.length);
         log.info("File name: " + FILE_NAME);
         log.info("Check output Folder!");
     }
+
+    public void writeAsCSV(Article[] array) throws IOException{
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy_MM_dd_HH:mm:ss_");
+        LocalDateTime todaysDate = LocalDateTime.now();
+
+        final String FILE_NAME = dateTimeFormatter.format(todaysDate) + fileWritterProperties.getFileBaseName();
+
+        CSVWriter csvWriter = new CSVWriter(new FileWriter(DESTINATION + FILE_NAME + ".csv"));
+
+        String[] headerSplit = HEADER.split(":");
+        csvWriter.writeNext(headerSplit);
+
+        for (Article element : array) {
+            String[] stringArray = {
+                    element.getAuthor(),
+                    element.getDescription(),
+                    element.getTitle()
+            };
+            csvWriter.writeNext(stringArray);
+        }
+
+        log.info("CSV file created successfully. Number of uploaded articles = " + array.length);
+        log.info("File name: " + FILE_NAME);
+        log.info("Check output Folder!");
+
+    }
+
+
+    public void writeAsJSON(Article[] array){
+
+     }
+
 }

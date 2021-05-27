@@ -1,5 +1,6 @@
 package com.webservices.newsapi.consumer;
 
+import com.webservices.newsapi.consumer.enumTypes.FileType;
 import com.webservices.newsapi.consumer.model.Article;
 import com.webservices.newsapi.consumer.service.ClientServiceImpl;
 import org.modelmapper.ModelMapper;
@@ -30,7 +31,9 @@ public class Application {
 		return args -> {
 
 			Article[] result = clientServiceImpl.getArticles("business", "pl");
-		clientServiceImpl.createFile(result);
+		clientServiceImpl.createFile(result, FileType.TXT);
+//		clientServiceImpl.createFile(result, FileType.JSON);
+		clientServiceImpl.createFile(result, FileType.CSV);
 
 		};
 	}

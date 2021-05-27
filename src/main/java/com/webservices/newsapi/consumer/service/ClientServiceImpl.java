@@ -1,8 +1,9 @@
 package com.webservices.newsapi.consumer.service;
 
-import com.webservices.newsapi.consumer.io.FileWritter;
+import com.webservices.newsapi.consumer.enumTypes.FileType;
 import com.webservices.newsapi.consumer.io.HTTPConnectionHandler;
 import com.webservices.newsapi.consumer.model.Article;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -12,21 +13,22 @@ import java.io.IOException;
 public class ClientServiceImpl  implements ClientService{
 
     private final HTTPConnectionHandler connectionHandler;
-    private final FileWritter fileWritter;
 
-   public ClientServiceImpl(HTTPConnectionHandler connectionHandler, FileWritter fileWritter){
+   public ClientServiceImpl(HTTPConnectionHandler connectionHandler){
        this.connectionHandler = connectionHandler;
-       this.fileWritter = fileWritter;
    }
+
+   @Autowired
+   FileWritterServiceImpl fileWritterServiceImpl;
 
     @Override
     public Article[] getArticles(String q, String lang){
-       return connectionHandler.getArticlesPage(q,lang);
+        return connectionHandler.getArticlesPage(q,lang);
     }
 
     @Override
-    public void createFile(Article[] array) throws IOException {
-       fileWritter.writeFile(array);
+    public void createFile(Article[] array, FileType fileType) throws IOException {
+        fileWritterServiceImpl.writeFile(array, fileType);
     }
 
 }
