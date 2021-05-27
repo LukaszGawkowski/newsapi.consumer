@@ -32,7 +32,7 @@ public class Application {
 
 			Article[] result = clientServiceImpl.getArticles("business", "pl");
 		clientServiceImpl.createFile(result, FileType.TXT);
-//		clientServiceImpl.createFile(result, FileType.JSON);
+		clientServiceImpl.createFile(result, FileType.JSON);
 		clientServiceImpl.createFile(result, FileType.CSV);
 
 		};

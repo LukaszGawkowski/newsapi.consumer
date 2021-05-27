@@ -1,6 +1,5 @@
 package com.webservices.newsapi.consumer.io;
 
-import com.webservices.newsapi.consumer.dto.ArticlesDTO;
 import com.webservices.newsapi.consumer.properties.TestSpecificProperties;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -9,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.io.IOException;
 
 
-public class FileWritterTest {
+public class FileCreatorTest {
 
     @Mock
-    private FileWritter fileWritter;
+    private FileCreator fileCreator;
 
     @Autowired
     TestSpecificProperties testSpecificProperties;

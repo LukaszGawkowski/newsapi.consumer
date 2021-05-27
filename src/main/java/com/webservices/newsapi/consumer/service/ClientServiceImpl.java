@@ -14,12 +14,12 @@ public class ClientServiceImpl  implements ClientService{
 
     private final HTTPConnectionHandler connectionHandler;
 
-   public ClientServiceImpl(HTTPConnectionHandler connectionHandler){
+    public ClientServiceImpl(HTTPConnectionHandler connectionHandler){
        this.connectionHandler = connectionHandler;
    }
 
-   @Autowired
-   FileWritterServiceImpl fileWritterServiceImpl;
+    @Autowired
+    FileCreatorServiceImpl fileWritterServiceImpl;
 
     @Override
     public Article[] getArticles(String q, String lang){
