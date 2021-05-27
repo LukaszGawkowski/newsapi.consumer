@@ -1,6 +1,7 @@
 package com.webservices.newsapi.consumer.io;
 
 import com.opencsv.CSVWriter;
+import com.webservices.newsapi.consumer.enumTypes.FileType;
 import com.webservices.newsapi.consumer.model.Article;
 import com.webservices.newsapi.consumer.properties.FileWritterProperties;
 import org.json.simple.JSONObject;
@@ -50,9 +51,7 @@ public class FileCreator {
         }
         txtWriter.close();
 
-        log.info("Text file created successfully. Number of uploaded articles = " + array.length);
-        log.info("File name: " + FILE_NAME);
-        log.info("Check output Folder!");
+        logSuccess(FileType.TXT, FILE_NAME, array.length);
     }
 
     public void writeAsCSV(Article[] array) throws IOException{
@@ -75,9 +74,8 @@ public class FileCreator {
             };
             csvWriter.writeNext(stringArray);
         }
-        log.info("CSV file created successfully. Number of uploaded articles = " + array.length);
-        log.info("File name: " + FILE_NAME);
-        log.info("Check output Folder!");
+
+        logSuccess(FileType.CSV, FILE_NAME, array.length);
     }
 
     public void writeAsJSON(Article[] array) throws IOException{
@@ -100,9 +98,12 @@ public class FileCreator {
         }
         jsonFile.close();
 
-        log.info("JSON file created successfully. Number of uploaded articles = " + array.length);
-        log.info("File name: " + FILE_NAME);
-        log.info("Check output Folder!");
+        logSuccess(FileType.JSON, FILE_NAME, array.length);
      }
 
+     private void logSuccess(FileType fileType, String fileName, int numberOfElements){
+         log.info(fileType.toString() + " file created successfully. Number of uploaded articles = " + numberOfElements);
+         log.info("File name: " + fileName);
+         log.info("Check output Folder!");
+     }
 }
