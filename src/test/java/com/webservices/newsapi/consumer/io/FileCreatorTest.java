@@ -18,7 +18,7 @@ public class FileCreatorTest {
 //    TestSpecificProperties testSpecificProperties;
 
     @Test
-    @DisplayName("Test: Created file exists when fileCreator.writeAs...(...) methods are invoked")
+    @DisplayName("Test: Created file EXISTS in test directory when fileCreator.writeAs...(...) methods are invoked")
     public void should_fileCreate_when_articlesArrayGiven() throws IOException {
 
 //        ArticlesDTO[] array = new ArticlesDTO[3];
